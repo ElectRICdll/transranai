@@ -1,0 +1,4 @@
+lang: "zh-cn", 
+msgs: 
+  welcome: "欢迎!"
+  loading: "加载中"
