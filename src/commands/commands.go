@@ -7,23 +7,33 @@ const (
 )
 
 var CommandSet = map[string]Command{
-	SET:      Set(),
-	CHECKOUT: Checkout(),
-	HELP:     Help(),
+	SET:      setCommand(),
+	CHECKOUT: checkoutCommand(),
+	HELP:     helpCommand(),
 }
 
-func Set() *SetCmd {
+func CommandSelector(cmdArgs ...string) Command {
+	command := cmdArgs[0]
+
+	if CommandSet[command] == nil {
+		return translateCommand()
+	}
+
+	return CommandSet[command]
+}
+
+func setCommand() *SetCmd {
 	return &SetCmd{}
 }
 
-func Checkout() *CheckoutCmd {
+func checkoutCommand() *CheckoutCmd {
 	return &CheckoutCmd{}
 }
 
-func Help() *HelpCmd {
+func helpCommand() *HelpCmd {
 	return &HelpCmd{}
 }
 
-func Translate() *TranslateCmd {
+func translateCommand() *TranslateCmd {
 	return &TranslateCmd{}
 }

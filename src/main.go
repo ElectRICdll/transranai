@@ -6,8 +6,5 @@ import (
 )
 
 func main() {
-	var command = os.Args[1]
-	var params = os.Args[2:]
-
-	commands.CommandSet[command].Execute(params...)
+	commands.CommandSelector(os.Args[1:]...).Execute()
 }
